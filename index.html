@@ -18,7 +18,6 @@
       --line: #e2e8f0;
       --shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
       --radius-xl: 28px;
-      --radius-lg: 22px;
     }
 
     * {
@@ -36,11 +35,6 @@
       background: var(--bg);
       color: var(--ink);
       line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
     }
 
     .page {
@@ -151,7 +145,8 @@
     }
 
     .target-head h2,
-    .section-head h2 {
+    .section-head h2,
+    .course-panel-head h2 {
       margin-top: 6px;
       font-size: clamp(28px, 3vw, 48px);
       line-height: 1.15;
@@ -291,67 +286,126 @@
       gap: 28px;
     }
 
-    .life-path {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      padding: 28px;
+    .life-cycle-wrap {
       border-radius: 34px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,247,237,0.9));
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,247,237,0.92));
       box-shadow: var(--shadow);
-      overflow: hidden;
+      padding: 36px 24px;
     }
 
-    .life-path::before {
+    .life-cycle-ring {
+      position: relative;
+      width: min(760px, 100%);
+      height: 760px;
+      margin: 0 auto;
+    }
+
+    .life-cycle-ring::before {
       content: "";
       position: absolute;
-      left: 8%;
-      right: 8%;
-      top: 86px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #d97706, #65a30d, #0f172a);
-      opacity: 0.28;
+      inset: 110px;
+      border-radius: 50%;
+      border: 4px dashed rgba(183, 121, 31, 0.28);
     }
 
-    .life-stage {
-      position: relative;
-      z-index: 1;
+    .life-cycle-ring::after {
+      content: "";
+      position: absolute;
+      inset: 165px;
+      border-radius: 50%;
+      border: 2px solid rgba(63, 98, 18, 0.14);
+    }
+
+    .cycle-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 230px;
+      height: 230px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0f172a, #334155);
+      color: #fff;
       display: flex;
-      min-height: 210px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 28px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
+      z-index: 2;
+    }
+
+    .cycle-center h3 {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+
+    .cycle-center p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .life-node {
+      position: absolute;
+      width: 170px;
+      min-height: 170px;
+      padding: 16px 14px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+      display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      padding: 18px 12px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.78);
       text-align: center;
-      border: 1px solid rgba(226, 232, 240, 0.85);
+      gap: 10px;
+      transform: translate(-50%, -50%);
+      z-index: 3;
     }
 
     .life-icon {
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
       display: grid;
       place-items: center;
-      border-radius: 20px;
       background: var(--green-soft);
-      font-size: 28px;
-      box-shadow: 0 12px 24px rgba(63, 98, 18, 0.12);
+      font-size: 26px;
+      box-shadow: 0 10px 22px rgba(63, 98, 18, 0.12);
     }
 
-    .life-stage h3 {
+    .life-node h4 {
       font-size: 18px;
       line-height: 1.25;
       font-weight: 950;
+      color: var(--ink);
     }
 
-    .life-stage p {
-      color: var(--muted);
+    .life-node p {
       font-size: 13px;
       line-height: 1.65;
+      color: var(--muted);
       font-weight: 650;
+    }
+
+    .node-1 { left: 50%; top: 11%; }
+    .node-2 { left: 78%; top: 27%; }
+    .node-3 { left: 82%; top: 60%; }
+    .node-4 { left: 65%; top: 86%; }
+    .node-5 { left: 35%; top: 86%; }
+    .node-6 { left: 18%; top: 60%; }
+    .node-7 { left: 22%; top: 27%; }
+
+    .cycle-tip {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .course-panel {
@@ -694,15 +748,34 @@
         grid-template-columns: 1fr;
       }
 
-      .life-path,
-      .course-modules {
+      .life-cycle-ring {
+        width: 100%;
+        height: auto;
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
 
-      .life-path::before {
+      .life-cycle-ring::before,
+      .life-cycle-ring::after {
         display: none;
       }
 
+      .cycle-center,
+      .life-node {
+        position: static;
+        transform: none;
+        width: 100%;
+        min-height: 160px;
+      }
+
+      .cycle-center {
+        grid-column: 1 / -1;
+        height: auto;
+        border-radius: 28px;
+      }
+
+      .course-modules,
       .upgrade-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -735,12 +808,17 @@
       }
 
       .target-card,
-      .final-card {
-        padding: 24px;
+      .final-card,
+      .course-panel,
+      .life-cycle-wrap {
+        padding: 22px;
         border-radius: 28px;
       }
 
-      .upgrade-grid {
+      .upgrade-grid,
+      .course-modules,
+      .module-grid,
+      .life-cycle-ring {
         grid-template-columns: 1fr;
       }
 
@@ -750,18 +828,6 @@
 
       .comparison-row {
         min-width: 680px;
-      }
-
-      .module-grid,
-      .life-path,
-      .course-modules {
-        grid-template-columns: 1fr;
-      }
-
-      .course-panel,
-      .life-path {
-        padding: 20px;
-        border-radius: 26px;
       }
 
       .course-panel-head {
@@ -850,41 +916,61 @@
       <div class="container lifecycle-showcase">
         <div class="section-head center">
           <div class="label">Lifecycle Care Map</div>
-          <h2>全生命周期健康管理图示</h2>
-          <p>新版课程将护理能力放入完整生命周期场景中，从儿童、青少年、成人、女性/男性健康到老年综合评估，形成连续照护路径。</p>
+          <h2>全生命周期健康管理闭环</h2>
+          <p>新版课程将护理能力放入完整生命周期场景中，从儿童、青少年、成人、女性/男性健康到老年综合评估，并回到家庭与社区，形成连续照护闭环。</p>
         </div>
 
-        <div class="life-path fade-in">
-          <div class="life-stage">
-            <div class="life-icon">👶</div>
-            <h3>儿童健康</h3>
-            <p>预防保健、发热评估、生长发育特殊问题管理</p>
+        <div class="life-cycle-wrap fade-in">
+          <div class="life-cycle-ring">
+            <div class="cycle-center">
+              <h3>全生命周期管理</h3>
+              <p>以全人护理为核心，覆盖不同生命阶段与家庭场景，形成连续照护的闭环体系。</p>
+            </div>
+
+            <div class="life-node node-1">
+              <div class="life-icon">👶</div>
+              <h4>儿童健康</h4>
+              <p>预防保健、发热评估、生长发育特殊问题管理</p>
+            </div>
+
+            <div class="life-node node-2">
+              <div class="life-icon">🧒</div>
+              <h4>青少年健康</h4>
+              <p>心理健康识别、沟通支持与早期干预</p>
+            </div>
+
+            <div class="life-node node-3">
+              <div class="life-icon">🧑</div>
+              <h4>成人健康</h4>
+              <p>健康筛查、疫苗接种、慢病风险预防</p>
+            </div>
+
+            <div class="life-node node-4">
+              <div class="life-icon">♀️</div>
+              <h4>女性健康</h4>
+              <p>生育期保健、更年期与老年期健康管理</p>
+            </div>
+
+            <div class="life-node node-5">
+              <div class="life-icon">♂️</div>
+              <h4>男性健康</h4>
+              <p>前列腺问题、性健康与泌尿症状评估</p>
+            </div>
+
+            <div class="life-node node-6">
+              <div class="life-icon">👵</div>
+              <h4>老年健康</h4>
+              <p>老年患者综合评估、多病共管与连续照护</p>
+            </div>
+
+            <div class="life-node node-7">
+              <div class="life-icon">🏠</div>
+              <h4>家庭与社区</h4>
+              <p>家庭访视、居家护理、签约服务与持续健康管理</p>
+            </div>
           </div>
-          <div class="life-stage">
-            <div class="life-icon">🧒</div>
-            <h3>青少年健康</h3>
-            <p>心理健康识别、沟通支持与早期干预</p>
-          </div>
-          <div class="life-stage">
-            <div class="life-icon">🧑</div>
-            <h3>成人健康</h3>
-            <p>健康筛查、疫苗接种、慢病风险预防</p>
-          </div>
-          <div class="life-stage">
-            <div class="life-icon">♀️</div>
-            <h3>女性健康</h3>
-            <p>生育期保健、更年期与老年期健康管理</p>
-          </div>
-          <div class="life-stage">
-            <div class="life-icon">♂️</div>
-            <h3>男性健康</h3>
-            <p>前列腺问题、性健康与泌尿症状评估</p>
-          </div>
-          <div class="life-stage">
-            <div class="life-icon">👵</div>
-            <h3>老年健康</h3>
-            <p>老年患者综合评估、多病共管与连续照护</p>
-          </div>
+
+          <div class="cycle-tip">闭环逻辑：儿童 → 青少年 → 成人 → 女性/男性健康 → 老年健康 → 回归家庭与社区连续照护</div>
         </div>
 
         <div class="course-panel fade-in delay-1">
@@ -1028,7 +1114,7 @@
             <div class="upgrade-top"><div class="soft-icon">🌱</div><div class="arrow">↗</div></div>
             <h3>全生命周期管理升级</h3>
             <div class="mini-box mini-old"><span class="mini-title">旧版</span><p>分散式专科覆盖门诊常见问题</p></div>
-            <div class="mini-box mini-new"><span class="mini-title">新版</span><p>建立系统化生命周期健康管理框架</p></div>
+            <div class="mini-box mini-new"><span class="mini-title">新版</span><p>建立系统化生命周期管理，覆盖儿童、青少年、成人、女性、男性与老年健康</p></div>
             <div class="point-tags"><span>儿童健康</span><span>青少年心理</span><span>成人筛查</span><span>老年综合评估</span></div>
           </article>
 
